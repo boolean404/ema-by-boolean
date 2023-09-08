@@ -1,0 +1,30 @@
+//@version=5
+
+indicator(title="EMA by Boolean", shorttitle="EMA by Boolean", overlay=true, timeframe="", timeframe_gaps=true)
+
+// start moving average
+ema1_len = input.int(20, minval=1, title="EMA 1", group="EMA Length")
+ema2_len = input.int(50, minval=1, title="EMA 2", group="EMA Length")
+ema3_len = input.int(100, minval=1, title="EMA 3", group="EMA Length")
+ema4_len = input.int(200, minval=1, title="EMA 4", group="EMA Length")
+
+ema1_src = input(close, title="EMA 1", group="EMA Source")
+ema2_src = input(close, title="EMA 2", group="EMA Source")
+ema3_src = input(close, title="EMA 3", group="EMA Source")
+ema4_src = input(close, title="EMA 4", group="EMA Source")
+
+ema1_offset = input.int(title="EMA 1", defval=0, minval=-500, maxval=500, group="EMA Offset")
+ema2_offset = input.int(title="EMA 2", defval=0, minval=-500, maxval=500, group="EMA Offset")
+ema3_offset = input.int(title="EMA 3", defval=0, minval=-500, maxval=500, group="EMA Offset")
+ema4_offset = input.int(title="EMA 4", defval=0, minval=-500, maxval=500, group="EMA Offset")
+
+ema1_out = ta.ema(ema1_src, ema1_len)
+ema2_out = ta.ema(ema2_src, ema2_len)
+ema3_out = ta.ema(ema3_src, ema3_len)
+ema4_out = ta.ema(ema4_src, ema4_len)
+
+plot(ema1_out, title="EMA 1", color=color.yellow, offset=ema1_offset)
+plot(ema2_out, title="EMA 2", color=color.green, offset=ema2_offset)
+plot(ema3_out, title="EMA 3", color=color.red, offset=ema3_offset)
+plot(ema4_out, title="EMA 4", color=color.blue, offset=ema4_offset)
+// end moving average
